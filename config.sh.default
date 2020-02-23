@@ -1,0 +1,24 @@
+#
+# Configuration
+#
+# To be sourced into the individual installation scripts.
+#
+
+if [[ $_ == $0 ]]; then
+    echo "config.sh should be sourced and not executed" >> /dev/stderr
+    exit 1
+fi
+
+## SD CARD
+# SD Card Device, e.g. /dev/sdb (the whole device, not a partition!)
+SD_CARD_DEVICE=/dev/sdx
+# SD Card boot partition, e.g. /dev/sdb1
+SD_CARD_BOOT=${SD_CARD_DEVICE}1
+# SD Card root partition, e.g. /dev/sdb2
+SD_CARD_ROOT=${SD_CARD_DEVICE}2
+
+# export all the variables
+export SD_CARD_DEVICE
+export SD_CARD_BOOT
+export SD_CARD_ROOT
+
