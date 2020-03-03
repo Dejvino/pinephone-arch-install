@@ -54,6 +54,14 @@ command -v sync >> /dev/null \
     && printInfo "sync exists ... OK" \
     || failure "sync not found."
 
+command -v lsblk >> /dev/null \
+    && printInfo "lsblk exists ... OK" \
+    || failure "lsblk not found."
+
+command -v wget >> /dev/null \
+    && printInfo "wget exists ... OK" \
+    || failure "wget not found. Install wget package."
+
 
 printInfo
 printInfo "All tests passed. You're ready to go!"

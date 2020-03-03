@@ -11,5 +11,52 @@ source common.sh
 
 printInfo "Time to prepare the SD Card."
 
-failure "TODO: not implemented."
+printInfo
+printInfo "Running lsblk for your convenience:"
+lsblk
 
+printInfo
+printInfo "Target device: $SD_CARD_DEVICE"
+[ ! -e $SD_CARD_DEVICE ] && failure "Target device not found. Did you update the config file? Is the device connected?"
+printInfo "...boot partition: $SD_CARD_BOOT"
+printInfo "...root partition: $SD_CARD_ROOT"
+
+read -p "Do you want to continue and format this device? [y/N]: "
+if [[ ! $REPLY =~ ^[yY]$ ]]; then
+    failure "Terminating."
+fi
+
+read -p "This will ERASE the device completely. Are you sure? [y/N]: "
+if [[ ! $REPLY =~ ^[yY]$ ]]; then
+    failure "Terminating."
+fi
+
+printInfo
+printInfo "Partitioning started..."
+sudo sfdisk $SD_CARD_DEVICE <<EOF
+label: dos
+unit: sectors
+
+4MiB,252MiB,
+256MiB,,
+EOF
+if [ $? -ne 0 ]; then
+    failure "Could not write partition table."
+fi
+printInfo "Partitioning done."
+
+sleep 0.5
+sync
+
+[ ! -e $SD_CARD_BOOT ] && failure "Boot $SD_CARD_BOOT partition not found. Did partitioning fail?"
+[ ! -e $SD_CARD_ROOT ] && failure "Root $SD_CARD_ROOT partition not found. Did partitioning fail?"
+
+printInfo
+printInfo "Formatting boot partition..."
+sudo mkfs.vfat -n BOOT $SD_CARD_BOOT || failure "Could not format root partition."
+printInfo "Formatting root partition..."
+sudo mkfs.f2fs -f -l ROOT $SD_CARD_ROOT || failure "Could not format boot partition."
+printInfo "Done."
+
+printInfo
+printInfo "Formatting Completed!"
