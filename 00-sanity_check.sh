@@ -58,6 +58,10 @@ command -v lsblk >> /dev/null \
     && printInfo "lsblk exists ... OK" \
     || failure "lsblk not found."
 
+command -v bsdtar >> /dev/null \
+    && printInfo "bsdtar exists ... OK" \
+    || failure "bsdtar not found."
+
 command -v wget >> /dev/null \
     && printInfo "wget exists ... OK" \
     || failure "wget not found. Install wget package."
