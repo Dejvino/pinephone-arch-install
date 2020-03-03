@@ -38,6 +38,10 @@ rm -rf test.txt && touch test.txt && rm test.txt
 printInfo
 printInfo "Checking commands:"
 
+command -v bash >> /dev/null \
+    && printInfo "bash exists ... OK" \
+    || failure "bash not found."
+
 command -v dd >> /dev/null \
     && printInfo "dd exists ... OK" \
     || failure "dd not found. All hope is lost."
