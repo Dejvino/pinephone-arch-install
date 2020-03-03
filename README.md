@@ -13,16 +13,14 @@ You'll find several shell scripts that should be executed in a given sequence. S
 | 02-format_sdcard.sh  | Yes, once   | Prepares a partition table on your SD Card and formats it.
 | 03-flash_rootfs.sh   | Yes, once   | Populates the SD Card's root partition with the root filesystem.
 | 04-flash_kernel.sh   | Yes         | Populates the SD Card's boot partition with a bootloader and a kernel.
+| 10-usb_network.sh    | Recommended | Configures a USB network interface on both the SD Card and the host system.
+| 11-passwordless_ssh  | Recommended | Installs your SSH public key as an authorized key for passwordless SSH login.
 | ...                  | ...         | ...
 | 99-cleanup.sh        | Optional    | Removes previously downloaded files and does a cleanup after any failures.
  
 # Current Status
-Right now only these scripts are implemented:
-* 00-sanity_check.sh
-* 01-download.sh
-* 04-flash_kernel.sh
-
-For the rest you should visit the [original source](https://xnux.eu/howtos/install-arch-linux-arm.html).
+All of the above scripts are implemented apart from:
+* 11-passwordless_ssh
 
 # Sources
 * https://archlinuxarm.org/platforms/armv8/allwinner/pine64
