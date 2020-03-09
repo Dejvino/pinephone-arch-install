@@ -58,5 +58,5 @@ printInfo "Formatting root partition..."
 sudo mkfs.f2fs -f -l ROOT $SD_CARD_ROOT || failure "Could not format boot partition."
 printInfo "Done."
 
-printInfo
-printInfo "Formatting Completed!"
+stageFinished "Run the step 03 to flash a root filesystem."
+

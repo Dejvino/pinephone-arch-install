@@ -61,5 +61,5 @@ printInfo "Done."
 
 sync
 
-printInfo
-printInfo "Rootfs flashed!"
+stageFinished "Run the step 04 to flash a kernel and a bootloader."
+

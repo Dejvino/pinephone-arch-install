@@ -27,6 +27,12 @@ failure() {
     exit 1
 }
 
+stageFinished() {
+    printInfo
+    printInfo "   STAGE CLEAR!"
+    printInfo $@
+}
+
 #
 # Common definitions
 #

@@ -92,6 +92,5 @@ sudo umount ../root \
     || failure "Could not umount $SD_CARD_ROOT."
 rm -rf ../root || failure "Could not remove root mount point."
 
-printInfo
-printInfo "Finished!"
+stageFinished "You are ready to start using the SD Card! Optionally you can continue with the next steps."
 

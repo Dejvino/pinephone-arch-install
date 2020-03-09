@@ -73,5 +73,6 @@ command -v wget >> /dev/null \
 
 printInfo
 printInfo "All tests passed. You're ready to go!"
-printInfo "Execute the next script in the sequence and follow the instructions."
+
+stageFinished "Execute the first script (starting with '01') and follow the instructions."
 
