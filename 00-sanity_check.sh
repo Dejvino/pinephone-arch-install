@@ -35,6 +35,15 @@ rm -rf test.txt && touch test.txt && rm test.txt
     && printInfo "SD Card device '$SD_CARD_DEVICE' exists ... OK" \
     || failure "SD Card device '$SD_CARD_DEVICE' not found. Check that it is connected or update the config.sh file."
 
+if mount | grep $SD_CARD_ROOT > /dev/null; then
+    failure "SD Card root partition '$SD_CARD_ROOT' is mounted. Unmount it first!"
+fi
+
+if mount | grep $SD_CARD_BOOT > /dev/null; then
+    failure "SD Card boot partition '$SD_CARD_BOOT' is mounted. Unmount it first!"
+fi
+
+
 printInfo
 printInfo "Checking commands:"
 
