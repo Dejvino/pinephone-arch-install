@@ -12,10 +12,10 @@ source common.sh
 printInfo "USB Networking"
 printInfo
 
-[ ! -e $SD_CARD_BOOT ] && failure "Boot $SD_CARD_BOOT partition not found. Is the device connected? Did you partition it?"
 
 read -p "Do you want to install the network to the device? [Y/n]: "
 if [[ ! $REPLY =~ ^[nN]$ ]]; then
+    [ ! -e $SD_CARD_ROOT ] && failure "Root $SD_CARD_ROOT partition not found. Is the device connected? Did you partition it?"
     if [ -e ./root ]; then
         rm -rf ./root || failure "Could not remove preexisting root directory. Is it still mounted? Is it yours?"
     fi

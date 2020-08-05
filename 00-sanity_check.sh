@@ -46,6 +46,10 @@ command -v dd >> /dev/null \
     && printInfo "dd exists ... OK" \
     || failure "dd not found. All hope is lost."
 
+command -v blockdev >> /dev/null \
+    && printInfo "blockdev exists ... OK" \
+    || failure "blockdev not found. All hope is lost."
+
 command -v mkimage >> /dev/null \
     && printInfo "mkimage exists ... OK" \
     || failure "mkimage not found. Install uboot-tools package."
@@ -70,6 +74,13 @@ command -v wget >> /dev/null \
     && printInfo "wget exists ... OK" \
     || failure "wget not found. Install wget package."
 
+command -v mkfs.vfat >> /dev/null \
+    && printInfo "mkfs.vfat exists ... OK" \
+    || failure "mkfs.vfat not found. Install dosfstools package."
+
+command -v mkfs.f2fs >> /dev/null \
+    && printInfo "mkfs.f2fs exists ... OK" \
+    || failure "mkfs.f2fs not found. Install f2fs-tools package."
 
 printInfo
 printInfo "All tests passed. You're ready to go!"

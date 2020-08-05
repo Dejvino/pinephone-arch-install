@@ -39,7 +39,12 @@ fi
 
 printInfo "This will take a while without showing any output. Please be patient."
 printInfo "Extracting..."
-sudo bsdtar -xpf $ROOTFS_ARCHIVE -C ./root || failure "Could not extract the rootfs into ./root"
+sudo bash <<EOF
+bsdtar -xpf $ROOTFS_ARCHIVE -C ./root
+EOF
+if [ $? -ne 0 ]; then
+    failure "Could not extract the rootfs into ./root"
+fi
 printInfo "Rootfs extracted."
 
 printInfo

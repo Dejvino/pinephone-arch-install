@@ -39,7 +39,10 @@ stageFinished() {
 ROOTFS_URL=http://os.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
 ROOTFS_ARCHIVE=rootfs.tar.gz
  
-KERNEL_URL=https://xff.cz/kernels/5.6/pp.tar.gz
+# 5.8 kernel
+#KERNEL_URL=https://xff.cz/kernels/5.8/pp1.tar.gz # PP 1.1
+KERNEL_URL=https://xff.cz/kernels/5.8/pp2.tar.gz # PP 1.2
+
 KERNEL_ARCHIVE=kernel.tar.gz
 KERNEL_DIR=kernel
 

@@ -32,6 +32,15 @@ if [[ ! $REPLY =~ ^[yY]$ ]]; then
 fi
 
 printInfo
+printInfo "Clearing start of device..." # to remove previous MBR and U-Boot data
+sudo dd if=/dev/zero of=$SD_CARD_DEVICE bs=512 count=1024 \
+	|| failure "Could not clear the start of $SD_CARD_DEVICE."
+printInfo "Clearing end of device..." # to remove previous GPT data
+sudo dd if=/dev/zero of=$SD_CARD_DEVICE bs=512 seek=$(( $(blockdev --getsz $SD_CARD_DEVICE) - 1024 )) count=1024 \
+	|| failure "Could not clear the end of $SD_CARD_DEVICE."
+printInfo "Done."
+
+printInfo
 printInfo "Partitioning started..."
 sudo sfdisk $SD_CARD_DEVICE <<EOF
 label: dos
